@@ -22,6 +22,20 @@ class SiteController {
             next(error);
         }
     }
+
+    async getBySiteId(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { id } = req.params;
+            if (!id) {
+                return res.status(404).json({ message: "Id not found" });
+            }
+
+            const data = await SiteModel.findOne({ siteId: id });
+            return res.status(200).json({ message: "Success", data });
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 export const siteController = new SiteController();

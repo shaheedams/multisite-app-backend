@@ -5,7 +5,7 @@ import router from "next/dist/shared/lib/router/router";
 const siteRouter = Router();
 
 siteRouter.get('/', siteController.getAll);
-// router.get('/:id',);
+siteRouter.get('/:id', siteController.getBySiteId);
 siteRouter.post('/', siteController.createSite);
 // router.patch('/:id',);
 // router.delete('/:id',);
