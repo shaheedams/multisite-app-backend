@@ -6,6 +6,7 @@ import compression from 'compression';
 import cors from 'cors';
 import { config } from "./config/env";
 import rateLimit from "express-rate-limit";
+import siteRouter from "./routes/sIte.routes";
 
 dotenv.config();
 const app = express();
@@ -31,6 +32,8 @@ const globalRateLimit = rateLimit({
 
 app.use(globalRateLimit);
 app.use(express.json({ limit: "2mb" }));
+
+app.use("/api/site", siteRouter);
 
 app.get('/api', (_req, res) => {
     res.status(200).send({ success: true, status: "ok", data: "Welcome to multisite API", timestamp: new Date().toISOString() })
