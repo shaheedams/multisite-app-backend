@@ -2,11 +2,13 @@ import { error } from "node:console";
 import app from "./app";
 import { config } from "./config/env";
 import { connectDB } from "./config/db";
+import { connectGraphQL } from "./config/graphQL";
 
 
 (async function () {
     try {
         await connectDB();
+        await connectGraphQL();
         const server = app.listen(config.port, () => {
             console.log(`Multisite API running`);
             console.log(`http://localhost:${config.port}/api`);
