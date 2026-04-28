@@ -8,8 +8,6 @@ type MultiSite {
   siteId: String
   brandName: String
   languages: Languages
-  createdAt: String
-  updatedAt: String
 }
 
 type Languages {
@@ -76,9 +74,8 @@ const resolvers = {
     async sites() {
       const data = await SiteModel.find().lean();
       return data
-    }
-    , async site(_parent: any, args: any, _context: any) {
-      const data = await SiteModel.findOne({ siteId: args.id });
+    }, async site(_parent: any, args: any, _context: any) {
+      const data = await SiteModel.findOne({ siteId: args.id }).lean();
       return data
     },
   }
